@@ -1,16 +1,43 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply font-roboto bg-gray-100;
+    }
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
+@layer components {
+    nav#navbar {
+        @apply bg-white border-b;
+    }
+    nav#navbar .container {
+        @apply flex justify-between items-center max-w-7xl mx-auto px-4;
+    }
+    nav#navbar .brand {
+        @apply text-xl font-semibold text-blue-600 py-4;
+    }
+    nav#navbar .links .link {
+        @apply text-lg text-gray-600 py-4 outline-none focus:outline-none;
+    }
+    main {
+        @apply max-w-7xl mx-auto;
+    }
+    main .container {
+        @apply max-w-7xl mx-auto px-4;
+    }
+    .btn-blue {
+        @apply px-3 py-2 bg-blue-600 outline-none focus:outline-none hover:bg-blue-500 text-white text-center transition-colors duration-300;
+    }
+    .btn-red {
+        @apply px-3 py-2 bg-red-600 outline-none focus:outline-none hover:bg-red-500 text-white text-center transition-colors duration-300;
+    }
+    .btn-black {
+        @apply px-3 py-2 bg-gray-800 outline-none focus:outline-none hover:bg-gray-700 text-white text-center transition-colors duration-300;
+    }
+    .input-blue {
+        @apply px-3 py-2 focus:outline-none outline-none border-blue-600;
+    }
 }
