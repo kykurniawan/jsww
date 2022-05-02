@@ -1,4 +1,4 @@
-import { EyeIcon, PencilIcon, TrashIcon } from '@heroicons/react/solid'
+import { EyeIcon, TrashIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
 
 function WatcherItem({ watcher, handlers }) {

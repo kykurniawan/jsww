@@ -9,24 +9,30 @@ import RequestList from './RequestList'
 import RequestDetail from './RequestDetail'
 import { useRequests } from '../hooks/request'
 
-function WatcherDetail({ socket }) {
+function WatcherDetail() {
   const router = useRouter()
   const { id } = router.query
   const { watcher, loading, error } = useWatcher(id)
   const { requests, loading: requestLoading, error: requestError, mutateRequests } = useRequests(id)
   const [detailed, setDetailed] = useState(null)
 
-  useEffect(() => {
-    socket.on(id, request => {
-      mutateRequests()
-    })
-  }, [socket, id, mutateRequests])
-
   const clickCallback = async (request) => {
     if (detailed != null && detailed._id == request._id) {
       setDetailed(null)
     } else {
       setDetailed(request)
+    }
+  }
+
+  const deleteCallback = async (request) => {
+    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + 'api/requests/' + request._id, {
+      method: "DELETE",
+    })
+    const json = await response.json()
+    if (json.status == 200) {
+      toast.success('Request deleted successfully.')
+      mutateRequests()
+      setDetailed(null)
     }
   }
 
@@ -45,7 +51,6 @@ function WatcherDetail({ socket }) {
           <Link href={'/'}>
             <a className="btn-blue">Back</a>
           </Link>
-          <button className="btn-red py-1.5">Delete</button>
         </div>
         <div className="p-5 rounded bg-white mb-5">
           <h1 className="text-xl text-gray-600 font-semibold mb-3">{watcher.name}</h1>
@@ -59,8 +64,8 @@ function WatcherDetail({ socket }) {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 md:gap-4">
           <div className="col-span-1">
-            <h2 className="text-gray-600 font-semibold mb-3">Request List</h2>
-            <RequestList active={detailed} clickCallback={clickCallback} requests={requests} loading={requestLoading} error={requestError} />
+            <h2 className="text-gray-600 font-semibold mb-3">Request List -- <button onClick={() => mutateRequests()} className="text-blue-600 hover:text-red-600">Refresh</button></h2>
+            <RequestList active={detailed} clickCallback={clickCallback} deleteCallback={deleteCallback} requests={requests} loading={requestLoading} error={requestError} />
           </div>
           <div className="col-span-1 md:col-span-2">
             <h2 className="text-gray-600 font-semibold mb-3">Request Detail</h2>
