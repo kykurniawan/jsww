@@ -14,18 +14,20 @@ function RequestDetail({ detailed }) {
       <h5 className="text-gray-600 font-semibold mb-3">Headers</h5>
       <div className="border rounded p-2 overflow-x-auto mb-3">
         <table className="table-auto">
-          {Object.entries(detailed.data.headers).map(entry => (
-            <tr key={entry[0]}>
-              <td className="whitespace-nowrap">
-                <div className="bg-blue-50 px-2 py-1 mb-2 rounded">{entry[0]}</div>
-              </td>
-              <td>
-                <div className="px-2 py-1 mb-2">
-                  {entry[1]}
-                </div>
-              </td>
-            </tr>
-          ))}
+          <tbody>
+            {Object.entries(detailed.data.headers).map(entry => (
+              <tr key={entry[0]}>
+                <td className="whitespace-nowrap">
+                  <div className="bg-blue-50 px-2 py-1 mb-2 rounded">{entry[0]}</div>
+                </td>
+                <td>
+                  <div className="px-2 py-1 mb-2">
+                    {entry[1]}
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
       {(detailed.data.body) ? (
@@ -33,18 +35,20 @@ function RequestDetail({ detailed }) {
           <h5 className="text-gray-600 font-semibold mb-3">Body</h5>
           <div className="border rounded p-2 overflow-x-auto mb-3">
             <table className="table-auto">
-              {Object.entries(detailed.data.body).map(entry => (
-                <tr key={entry[0]}>
-                  <td className="whitespace-nowrap">
-                    <div className="bg-blue-50 px-2 py-1 mb-2 rounded">{entry[0]}</div>
-                  </td>
-                  <td>
-                    <div className="px-2 mb-2">
-                      {entry[1]}
-                    </div>
-                  </td>
-                </tr>
-              ))}
+              <tbody>
+                {Object.entries(detailed.data.body).map(entry => (
+                  <tr key={entry[0]}>
+                    <td className="whitespace-nowrap">
+                      <div className="bg-blue-50 px-2 py-1 mb-2 rounded">{entry[0]}</div>
+                    </td>
+                    <td>
+                      <div className="px-2 mb-2">
+                        {entry[1]}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
             </table>
           </div>
         </>
@@ -56,18 +60,20 @@ function RequestDetail({ detailed }) {
           <h5 className="text-gray-600 font-semibold mb-3">Cookies</h5>
           <div className="border rounded p-2 overflow-x-auto mb-3">
             <table className="table-auto">
-              {Object.entries(detailed.data.cookies).map(entry => (
-                <tr key={entry[0]}>
-                  <td className="whitespace-nowrap">
-                    <div className="bg-blue-50 px-2 py-1 mb-2 rounded">{entry[0]}</div>
-                  </td>
-                  <td>
-                    <div className="px-2 mb-2">
-                      {entry[1]}
-                    </div>
-                  </td>
-                </tr>
-              ))}
+              <tbody>
+                {Object.entries(detailed.data.cookies).map(entry => (
+                  <tr key={entry[0]}>
+                    <td className="whitespace-nowrap">
+                      <div className="bg-blue-50 px-2 py-1 mb-2 rounded">{entry[0]}</div>
+                    </td>
+                    <td>
+                      <div className="px-2 mb-2">
+                        {entry[1]}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
             </table>
           </div>
         </>

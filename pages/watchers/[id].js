@@ -2,12 +2,7 @@ import { getSession } from 'next-auth/react'
 import Navigation from '../../components/Navigation'
 import Head from 'next/head'
 import { Toaster } from 'react-hot-toast'
-import { io } from "socket.io-client"
 import WatcherDetail from '../../components/WatcherDetail'
-
-let socket = io(process.env.NEXT_PUBLIC_BASE_URL, {
-  path: '/api/socket'
-})
 
 export default function WatcherDetailPage({ session }) {
   return (
@@ -19,7 +14,7 @@ export default function WatcherDetailPage({ session }) {
       </Head>
       <Navigation session={session} />
       <main>
-        <WatcherDetail session={session} socket={socket} />
+        <WatcherDetail session={session} />
       </main>
       <Toaster />
     </>
